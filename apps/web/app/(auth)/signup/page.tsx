@@ -2,7 +2,7 @@ import SignupForm from "@/components/auth/signup-form";
 import Link from "next/link";
 import { SiJirasoftware } from "react-icons/si";
 
-const Signup = async () => {
+const Signup = () => {
   return (
     <div className="bg-[url('/beams.jpg')] bg-no-repeat bg-cover flex flex-col items-center justify-center min-h-screen px-4">
       <div className="bg-background max-w-md w-full shadow-md rounded-xl p-8">
