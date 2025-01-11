@@ -21,6 +21,11 @@ import { BullModule } from '@nestjs/bullmq';
         REDIS_HOST: Joi.string().required(),
         REDIS_PORT: Joi.number().required(),
         APP_URL: Joi.string().required(),
+        AWS_REGION: Joi.string().required(),
+        AWS_ACCESS_KEY_ID: Joi.string().required(),
+        AWS_SECRET_ACCESS_KEY: Joi.string().required(),
+        AWS_S3_BUCKET: Joi.string().required(),
+        MAIL_FROM: Joi.string().required(),
       }),
     }),
     DatabaseModule.forRootAsync({

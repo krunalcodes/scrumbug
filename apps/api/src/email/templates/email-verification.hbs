@@ -1,0 +1,40 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Email Verification</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0;
+      background-color: #f4f5f7; } .email-container { max-width: 600px; margin:
+      20px auto; background-color: #ffffff; border: 1px solid #e1e4e8;
+      border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0,
+      0.1); } .header { background-color: #0052cc; color: white; text-align:
+      center; padding: 20px; } .header img { width: 80px; margin-bottom: 10px; }
+      .content { padding: 20px; text-align: center; color: #333333; } .content
+      h1 { font-size: 20px; margin-bottom: 10px; } .content p { font-size: 14px;
+      line-height: 1.6; margin-bottom: 20px; } .content .button { display:
+      inline-block; text-decoration: none; background-color: #0052cc; color:
+      #ffffff; padding: 10px 20px; border-radius: 5px; font-size: 14px;
+      margin-top: 20px; } .footer { text-align: center; padding: 10px;
+      font-size: 12px; color: #888888; background-color: #f9f9f9; }
+    </style>
+  </head>
+  <body>
+    <div class='email-container'>
+      <div class='header'>
+        <img src='' alt='Scrumbug Logo' />
+      </div>
+      <div class='content'>
+        <h1>Welcome!</h1>
+        <p>Thank you for signing up with us. Please verify your email address to
+          complete your registration.</p>
+        <a href='{{url}}' class='button'>Verify Email</a>
+        <p>If you did not sign up for this account, you can safely ignore this
+          email.</p>
+      </div>
+      <div class='footer'>
+        <p>This message was sent to you by Scrumbug Cloud</p>
+      </div>
+    </div>
+  </body>
+</html>
