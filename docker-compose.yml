@@ -1,0 +1,24 @@
+services:
+  postgres:
+    container_name: scrumbug_postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/postgres:/data/postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: scrumbug
+    networks:
+      - scrumbug
+  redis:
+    container_name: scrumbug_redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - scrumbug
+networks:
+  scrumbug:
+    driver: bridge
