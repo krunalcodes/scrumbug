@@ -5,6 +5,8 @@ import * as Joi from 'joi';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DatabaseModule } from 'src/database/database.module';
 import { AuthModule } from 'src/auth/auth.module';
+import { EmailModule } from 'src/email/email.module';
+import { BullModule } from '@nestjs/bullmq';
 
 @Module({
   imports: [
@@ -16,6 +18,9 @@ import { AuthModule } from 'src/auth/auth.module';
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
         JWT_SECRET: Joi.string().required(),
+        REDIS_HOST: Joi.string().required(),
+        REDIS_PORT: Joi.number().required(),
+        APP_URL: Joi.string().required(),
       }),
     }),
     DatabaseModule.forRootAsync({
@@ -29,6 +34,17 @@ import { AuthModule } from 'src/auth/auth.module';
         database: configService.get('POSTGRES_DB'),
       }),
     }),
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        connection: {
+          host: configService.get('REDIS_HOST'),
+          port: configService.get('REDIS_PORT'),
+        },
+      }),
+    }),
+    EmailModule,
     AuthModule,
   ],
   controllers: [AppController],

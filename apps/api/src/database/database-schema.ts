@@ -65,6 +65,25 @@ export const memberRelations = relations(teamMembers, ({ one }) => ({
   team: one(teams, { fields: [teamMembers.teamId], references: [teams.id] }),
 }));
 
+export const tokenTypes = pgEnum('token_types', [
+  'EMAIL_VERIFICATION',
+  'PASSWORD_RESET',
+]);
+
+export const tokens = pgTable('tokens', {
+  id: serial('id').primaryKey(),
+  token: varchar('token', { length: 255 }).unique().notNull(),
+  type: tokenTypes('type').notNull(),
+  userId: integer('user_id')
+    .references(() => users.id, { onDelete: 'cascade' })
+    .notNull(),
+  expires_at: timestamp('expires_at'),
+});
+
+export const tokenRelations = relations(tokens, ({ one }) => ({
+  user: one(users, { fields: [tokens.userId], references: [users.id] }),
+}));
+
 export const databaseSchema = {
   teams,
   teamRelations,
@@ -73,4 +92,7 @@ export const databaseSchema = {
   userRoles,
   teamMembers,
   memberRelations,
+  tokenTypes,
+  tokens,
+  tokenRelations,
 };
