@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import * as Joi from 'joi';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DatabaseModule } from 'src/database/database.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DatabaseModule } from 'src/database/database.module';
         POSTGRES_USER: Joi.string().required(),
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
       }),
     }),
     DatabaseModule.forRootAsync({
@@ -27,6 +29,7 @@ import { DatabaseModule } from 'src/database/database.module';
         database: configService.get('POSTGRES_DB'),
       }),
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
