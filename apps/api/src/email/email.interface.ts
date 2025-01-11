@@ -3,3 +3,9 @@ export interface IEmailVerification {
   url: string;
   name: string;
 }
+
+export interface IResetPassword {
+  email: string;
+  url: string;
+  name: string;
+}
